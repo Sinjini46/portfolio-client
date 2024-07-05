@@ -3,7 +3,6 @@ import SectionTitle from "../../components/SectionTitle";
 import { useSelector } from "react-redux";
 
 function Contact() {
-
   const { portfolioData } = useSelector((state) => state.root);
   const { contacts } = portfolioData;
 
@@ -12,8 +11,8 @@ function Contact() {
     window.location.href = `mailto:${email}`;
   };
 
-  const handlePhoneClick = (phone) => {
-    window.location.href = `tel:${phone}`;
+  const handleLinkedInClick = (link) => {
+    window.location.href = link;
   };
 
   return (
@@ -21,7 +20,10 @@ function Contact() {
       <SectionTitle title="Contact" />
       <div className="max-w-screen-lg mx-auto px-4 py-3">
         {contacts.map((item) => (
-          <div key={item.id} className="flex flex-col sm:flex-row items-start gap-10">
+          <div
+            key={item.id}
+            className="flex flex-col sm:flex-row items-start gap-10"
+          >
             <div className="text-white text-lg space-y-2">
               <p>&lt;</p>
               <div className="mx-5 space-y-2">
@@ -41,17 +43,18 @@ function Contact() {
                   </a>
                 </p>
                 <p>
-                  <span className="text-tertiary font-semibold">Phone:</span>{" "}
+                  <span className="text-tertiary font-semibold">LinkedIn:</span>{" "}
                   <a
-                    href={`tel:${item.phone}`}
+                    href={item.link}
                     className="text-white hover:underline"
-                    onClick={() => handlePhoneClick(item.phone)}
+                    onClick={() => handleLinkedInClick(item.link)}
                   >
-                    {item.phone}
+                    {item.link}
                   </a>
                 </p>
                 <p>
-                  <span className="text-tertiary font-semibold">Address:</span> {item.address}
+                  <span className="text-tertiary font-semibold">Address:</span>{" "}
+                  {item.address}
                 </p>
               </div>
               <p>&lt;/&gt;</p>
